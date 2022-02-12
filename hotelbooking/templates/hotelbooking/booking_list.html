@@ -1,0 +1,12 @@
+{% extends 'hotelbooking/base.html' %}
+
+{% block content %}
+    <h1>Bookings</h1>
+    {% for booking in bookings %}
+        <div class="booking">
+            <h2><a href="">{{ booking.locator }}</a></h2>
+            <p></p>
+        </div>
+    {% endfor %}
+    <a href="{% url 'new_booking' %}">New Booking</a>
+{% endblock %}
