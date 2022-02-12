@@ -1,0 +1,36 @@
+{% extends 'hotelbooking/base.html' %}
+
+{% block content %}
+    <div class="">
+        <h1>Booking Contact Data</h1>
+        <form action="{% url 'save_booking' %}" class="form-inline" method="post">
+            {% csrf_token %}
+            <label for="start">In date:</label>
+            <input type="text" name=in_date value={{in_date}}><br><br>
+            
+            <label for="start">Out date:</label>
+            <input type="text" name=out_date value={{out_date}}><br><br>
+            
+            <label for="start">Num guests:</label>
+            <input type="text" name=num_guests value={{num_guests}}><br><br>
+
+            <label for="start">Room type</label>
+            <input type="text" name=room_type value={{room_type}}><br><br>
+
+            <label for="start">Name:</label>
+            <input type="text" name="name"  maxlength="60" value={{in_date}}><br><br>
+
+            <label for="start">Email:</label>
+            <input type="text" name="email" maxlength="100"><br><br>
+
+            <label for="start">Country code:</label>
+            <input type="text" name="country_code" maxlength="3"><br><br>
+
+            <label for="start">Phone:</label>
+            <input type="text" name="phone" maxlength="9"><br><br>
+
+            <button type="submit" class="btn btn-success btn-lg mb-2">Save</button>
+        </form>
+       
+    </div>
+{% endblock %}

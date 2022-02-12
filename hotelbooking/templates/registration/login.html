@@ -1,12 +1,21 @@
+
 {% extends 'hotelbooking/base.html' %}
 
 {% block content %}
-    <h2>Login</h2>
-
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Login">
-    </form>
+    <div id="login-form" class="w50">
+        <div class="h2 center-v">Login</div>
+        <form  action="{% url 'login' %}"  method="post">
+            {% csrf_token %}
+            <div class="form-group m-bottom-2">
+                <label for="user_login">User</label>
+                <input class="form-control" id="user_login" name="username" placeholder="User">
+            </div>
+            <div class="form-group m-bottom-2">
+                <label for="password_login">Password</label>
+                <input type="password" class="form-control" id="password_login" name="password" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary center-h w100">Log in</button>
+        </form>
+    </div>
 
 {% endblock %}

@@ -1,0 +1,45 @@
+html{
+    height: 100%;
+    background-color: #f0f8ff !important;
+}
+body{
+    height: 100%;
+    background-color: #f0f8ff !important;
+}
+.w100{
+    width: 100%;
+}
+.w70{
+    width: 100%;
+}
+.w50{
+    width: 50% !important;
+}
+.m-bottom-1{
+    margin-bottom: 1em !important;
+}
+.m-bottom-2{
+    margin-bottom: 2em !important;
+}
+#login-form{
+    border: #337ab7 solid thin;
+    border-radius: 8px;
+    padding: 2em;
+    background-color: white;
+    max-width: 30em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.center-h{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%,0);
+}
+.center-v{
+    position: relative;
+    top: 50%;
+    transform: translate(0,-50%);
+}
