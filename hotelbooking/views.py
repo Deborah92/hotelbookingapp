@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.db.models import DurationField, ExpressionWrapper, F
 from .models import Booking, RoomType, Room, Customer
-from datetime import datetime
+from datetime import datetime, date
 import random
 import string 
 from urllib.parse import urlencode
@@ -51,16 +51,14 @@ def get_room_types_available(request):
     in_date = request.GET['in_date']
     out_date = request.GET['out_date']
     num_guests = request.GET['num_guests']
-    room_types_available = RoomType.objects.filter(max_guest__gte=num_guests, room__is_bookable=True).exclude(booking__checkin_date__lte=out_date, booking__checkout_date__gt=in_date).order_by('id')
+    dif_in_out_date = datetime.strptime(out_date, '%Y-%m-%d') - datetime.strptime(in_date, '%Y-%m-%d')
+    room_types_available = RoomType.objects.filter(max_guest__gte=num_guests, room__is_bookable=True).exclude(
+        booking__checkin_date__lte=out_date, booking__checkout_date__gt=in_date).order_by('id').annotate(total=F('price') * dif_in_out_date.days)
 
-    # room_types_available = RoomType.objects.annotate(
-    #             duration=ExpressionWrapper(F('booking__checkout_date')-F('booking__checkin_date'),output_field=DurationField())).filter(
-    #     max_guest__gte=num_guests, room__is_bookable=True).exclude(
-    #         booking__checkin_date__lte=out_date, booking__checkout_date__gt=in_date).order_by('id')
     return render(
         request,
         'hotelbooking/new_booking.html', 
-        {'room_types_available' : room_types_available, 'in_date': in_date, 'out_date': out_date, 'num_guests': num_guests}
+        {'room_types_available' : room_types_available, 'in_date': in_date, 'out_date': out_date, 'num_guests': num_guests }
     )
 
 def booking_contact_data(request):
@@ -126,4 +124,3 @@ def save_booking(request):
     url = '{}?{}'.format(base_url, query_string) 
     return redirect(url)
     
-

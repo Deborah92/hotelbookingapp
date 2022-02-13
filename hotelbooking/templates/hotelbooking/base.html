@@ -10,13 +10,16 @@
         <title>Bookings App</title>
     </head>
     <body>
-        <div id= "nav-bar" class= "position-fixed d-flex">
-            <button class="btn-transparent d-flex justify-content-center align-items-center" ><i class="fa fa-angle-left fa-2xl"></i></button>
-            <button class="btn-transparent d-flex justify-content-center align-items-center" onclick="location.href='/'"><i class="fa fa-home fa-xl"></i></button>
-            {% if user.is_authenticated %} 
-                <button class="btn-transparent d-flex justify-content-center align-items-center" onclick="location.href='/logout'" ><i class="fa-solid fa-right-from-bracket fa-xl"></i></button>
-            {% endif %}
-        </div> 
+        {% if user.is_authenticated %} 
+            <div id= "nav-bar" class= "position-fixed d-flex">
+                <button class="btn-transparent d-flex justify-content-center align-items-center" onClick="window.history.back();return false;" ><i class="fa fa-angle-left fa-2xl"></i></button>
+                <span id="title-app" class="text-align-center align-items-center m-0">CHAPP SOLUTIONS - ZUCCHETTI</span>
+                <div>
+                    <button class="btn-transparent d-flex justify-content-center align-items-center" onclick="location.href='/'"><i class="fa fa-home fa-xl"></i></button>
+                    <button class="btn-transparent d-flex justify-content-center align-items-center" onclick="location.href='/logout'" ><i class="fa-solid fa-right-from-bracket fa-xl"></i></button>
+                </div>
+            </div> 
+        {% endif %}
         {% block content %}
         {% endblock %}
         

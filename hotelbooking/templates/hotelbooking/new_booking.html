@@ -2,34 +2,55 @@
 
 {% block content %}
     <div class="">
-        <h1>Create Booking</h1>
-        <form action="{% url 'get_room_types_available' %}" class="form-inline" method="get">
-            <label for="start">In date:</label>
-            <input type="date" id="start" name="in_date" value={{in_date}} min="2022-01-01" max="2022-12-31">
-
-            <label for="start">Out date:</label>
-            <input type="date" id="start" name="out_date" value={{out_date}} min="2022-01-01" max="2022-12-31">
-
-            <label for="start">Num guests:</label>
-            <input type="number" name="num_guests" min="0" max="4" value={{num_guests}}>
-
-            <button type="submit" class="btn btn-primary">Search</button>
-        </form>.
-        <form action="{% url 'booking_contact_data' %}" class="form-inline" method="get">
-            {% for room_type in room_types_available %}
-                <div class="">
-                    <label>Tipo habitación:</label>{{ room_type.name }}
-                    <label>Precio:</label>{{ room_type.price }}
-                    <input type="hidden" id="start" name="room_type" value={{room_type.id}}>
-                    <input type="hidden" id="start" name="in_date" value={{in_date}} min="2022-01-01" max="2022-12-31">
-                    <input type="hidden" id="start" name="out_date" value={{out_date}} min="2022-01-01" max="2022-12-31">
-                    <input type="hidden" name="num_guests" min="0" max="4" value={{num_guests}}>
-                    <button type="submit" class="btn btn-primary">Select</button>
+        <div class="title-div">
+            <h3 class="w70" >Create Booking</h3>
+        </div>
+        <div class="margin2">
+        
+            <form action="{% url 'get_room_types_available' %}" method="get">
+                <div id="search-bar" >
+                    <div class="form-group row mr-2 fit-content">
+                        <label class="col-sm-4 col-form-label label-search">In date:</label>
+                        <div class="col-sm-8">
+                            <input type="date" class="form-control" name="in_date" value={{in_date}} min="2022-01-01" max="2022-12-31">
+                        </div>
+                    </div>
+                    <div class="form-group row mr-2 fit-content">
+                        <label class="col-sm-4 col-form-label label-search">Out date:</label>
+                        <div class="col-sm-8">
+                            <input type="date" class="form-control" name="out_date" value={{out_date}} min="2022-01-01" max="2022-12-31">
+                        </div>
+                    </div>
+                    <div class="form-group row mr-2 fit-content">
+                        <label class="col-sm-7 col-form-label label-search">Num guests:</label>
+                        <div class="col-sm-5">
+                        <input type="number" class="form-control" name="num_guests" min="0" max="4" value={{num_guests}}>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary fit-content align-items-center">Search</button>
                 </div>
-            {% endfor %}
-            {% if not room_types_available %}
-                No hay habitaciones disponibles
-            {% endif %}
-        </form>
+            </form>
+            
+            <form action="{% url 'booking_contact_data' %}" method="get">
+                {% for room_type in room_types_available %}
+                    <div class= "card-booking">
+                        <div id="align-items-card" class="d-flex">
+                            <span>{{ room_type.name }}</span>
+                            <span id="occupancy-icon"><i class="fa-solid fa-user-large"></i>{{ room_type.max_guest }}</span>
+                            <span>{{ room_type.total }}€</span>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Select</a>
+                    </div> 
+                    <input type="hidden" name="room_type" value={{room_type.id}}>
+                    <input type="hidden" name="in_date" value={{in_date}} min="2022-01-01" max="2022-12-31">
+                    <input type="hidden" name="out_date" value={{out_date}} min="2022-01-01" max="2022-12-31">
+                    <input type="hidden" name="num_guests" min="0" max="4" value={{num_guests}}>
+                {% endfor %}
+                {% if not room_types_available %}
+                    No hay habitaciones disponibles
+                {% endif %}
+            </form>
+        </div>
     </div>
 {% endblock %}

@@ -1,14 +1,14 @@
 {% extends 'hotelbooking/base.html' %}
 
 {% block content %}
-    <div id="title-div">
+    <div class="title-div">
         <h3 class="w70" >Bookings</h3>
         <button type="button" class="btn btn-primary justify-content-end" onclick="location.href='{% url 'new_booking' %}'">New Booking</button>
     </div>
     <div class="table-responsive margin2">
-        <table class="table">
+        <table class="table table-striped" >
             <thead>
-                <tr>
+                <tr  class="table-header">
                     <th scope="col">Check In</th>
                     <th scope="col">Check Out</th>
                     <th scope="col">Room Type</th>
