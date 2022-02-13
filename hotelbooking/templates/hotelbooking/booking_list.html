@@ -1,8 +1,11 @@
 {% extends 'hotelbooking/base.html' %}
 
 {% block content %}
-    <h1>Bookings</h1>
-    <div class="table-responsive">
+    <div id="title-div">
+        <h3 class="w70" >Bookings</h3>
+        <button type="button" class="btn btn-primary justify-content-end" onclick="location.href='{% url 'new_booking' %}'">New Booking</button>
+    </div>
+    <div class="table-responsive margin2">
         <table class="table">
             <thead>
                 <tr>
@@ -18,7 +21,7 @@
             <tbody>
                 {% for booking in bookings %}
                     <tr>
-                        <th scope="row">{{ booking.formatCheckinDate }}</th>
+                        <td>{{ booking.formatCheckinDate }}</th>
                         <td>{{ booking.formatCheckinOut }}</td>
                         <td>{{ booking.room_type.name }}</td>
                         <td>{{ booking.num_guest }}</td>
@@ -30,5 +33,4 @@
             </tbody>
         </table>
     </div>
-    <button type="button" class="btn btn-primary" onclick="location.href='{% url 'new_booking' %}'">New Booking</button>
 {% endblock %}

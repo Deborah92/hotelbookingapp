@@ -3,16 +3,23 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="{% static 'css/app.css' %}">
+        <script src="https://kit.fontawesome.com/f8abda3465.js" crossorigin="anonymous"></script>
         <title>Bookings App</title>
     </head>
     <body>
+        <div id= "nav-bar" class= "position-fixed d-flex">
+            <button class="btn-transparent d-flex justify-content-center align-items-center" ><i class="fa fa-angle-left fa-2xl"></i></button>
+            <button class="btn-transparent d-flex justify-content-center align-items-center" onclick="location.href='/'"><i class="fa fa-home fa-xl"></i></button>
+            {% if user.is_authenticated %} 
+                <button class="btn-transparent d-flex justify-content-center align-items-center" onclick="location.href='/logout'" ><i class="fa-solid fa-right-from-bracket fa-xl"></i></button>
+            {% endif %}
+        </div> 
         {% block content %}
         {% endblock %}
-        {% if user.is_authenticated %} 
-            <button type="button" class="btn btn-danger" onclick="location.href='/logout'">Logout</button>
-        {% endif %}
+        
+        
     </body>
 </html>
