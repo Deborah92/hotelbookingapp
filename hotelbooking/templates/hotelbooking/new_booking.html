@@ -12,19 +12,19 @@
                     <div class="form-group row mr-2 fit-content">
                         <label class="col-sm-4 col-form-label label-search">In date:</label>
                         <div class="col-sm-8">
-                            <input type="date" class="form-control" name="in_date" value={{in_date}} min="2022-01-01" max="2022-12-31">
+                            <input type="date" class="form-control" name="in_date" value={{in_date}} min="2022-01-01" max="2022-12-31" required>
                         </div>
                     </div>
                     <div class="form-group row mr-2 fit-content">
                         <label class="col-sm-4 col-form-label label-search">Out date:</label>
                         <div class="col-sm-8">
-                            <input type="date" class="form-control" name="out_date" value={{out_date}} min="2022-01-01" max="2022-12-31">
+                            <input type="date" class="form-control" name="out_date" value={{out_date}} min="2022-01-01" max="2022-12-31" required>
                         </div>
                     </div>
                     <div class="form-group row mr-2 fit-content">
                         <label class="col-sm-7 col-form-label label-search">Num guests:</label>
                         <div class="col-sm-5">
-                        <input type="number" class="form-control" name="num_guests" min="0" max="4" value={{num_guests}}>
+                        <input type="number" class="form-control" name="num_guests" min="0" max="4" value={{num_guests}} required>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary fit-content align-items-center">Search</button>
@@ -46,6 +46,7 @@
                     <input type="hidden" name="in_date" value={{in_date}} min="2022-01-01" max="2022-12-31">
                     <input type="hidden" name="out_date" value={{out_date}} min="2022-01-01" max="2022-12-31">
                     <input type="hidden" name="num_guests" min="0" max="4" value={{num_guests}}>
+                    <input type="hidden" name="total" min="0" max="4" value={{room_type.total}}>
                 {% endfor %}
                 {% if not room_types_available %}
                     No hay habitaciones disponibles

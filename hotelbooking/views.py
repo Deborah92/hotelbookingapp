@@ -47,11 +47,16 @@ def new_booking(request):
 def error_404_view(request):
     return redirect('/')
 
+def dif_between_dates(start_date, end_date):
+    dif_in_out_date = datetime.strptime(end_date, '%Y-%m-%d') - datetime.strptime(start_date, '%Y-%m-%d')
+    return dif_in_out_date
+
+
 def get_room_types_available(request):
     in_date = request.GET['in_date']
     out_date = request.GET['out_date']
     num_guests = request.GET['num_guests']
-    dif_in_out_date = datetime.strptime(out_date, '%Y-%m-%d') - datetime.strptime(in_date, '%Y-%m-%d')
+    dif_in_out_date = dif_between_dates(in_date,out_date)
     room_types_available = RoomType.objects.filter(max_guest__gte=num_guests, room__is_bookable=True).exclude(
         booking__checkin_date__lte=out_date, booking__checkout_date__gt=in_date).order_by('id').annotate(total=F('price') * dif_in_out_date.days)
 
@@ -66,10 +71,11 @@ def booking_contact_data(request):
     out_date = request.GET['out_date']
     num_guests = request.GET['num_guests']
     room_type = request.GET['room_type']
+    total = request.GET['total']
     return render(
         request,
         'hotelbooking/booking_contact_data.html',
-        {'in_date': in_date, 'out_date': out_date, 'num_guests': num_guests, 'room_type': room_type}
+        {'in_date': in_date, 'out_date': out_date, 'num_guests': num_guests, 'room_type': room_type, 'total': total}
     )
 
 def create_or_update_customer(name, email, country_code, phone):
@@ -97,12 +103,15 @@ def save_booking(request):
 
     room = Room.objects.filter( type=room_type, is_bookable=True).exclude(booking__checkin_date__lte=out_date, booking__checkout_date__gt=in_date).first()
     if room:
+        room_type_instance = RoomType.objects.get(id=room_type)
+        dif_in_out_date = dif_between_dates(in_date,out_date)
+        total = dif_in_out_date.days * room_type_instance.price
         booking_instance = Booking(
             locator = generate_random_alphanumeric_string(10),
-            room_type = RoomType.objects.get(id=room_type),
+            room_type = room_type_instance,
             num_guest = num_guests,
             customer = customer_instance,
-            total_price = 300,
+            total_price = total,
             room_num = room,
             checkin_date = in_date,
             checkout_date = out_date,
