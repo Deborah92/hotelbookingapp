@@ -13,7 +13,7 @@
             <label for="start">Num guests:</label>
             <input type="number" name="num_guests" min="0" max="4" value={{num_guests}}>
 
-            <button type="submit" class="btn btn-success btn-lg mb-2">Search</button>
+            <button type="submit" class="btn btn-primary">Search</button>
         </form>.
         <form action="{% url 'booking_contact_data' %}" class="form-inline" method="get">
             {% for room_type in room_types_available %}
@@ -24,7 +24,7 @@
                     <input type="hidden" id="start" name="in_date" value={{in_date}} min="2022-01-01" max="2022-12-31">
                     <input type="hidden" id="start" name="out_date" value={{out_date}} min="2022-01-01" max="2022-12-31">
                     <input type="hidden" name="num_guests" min="0" max="4" value={{num_guests}}>
-                    <button type="submit" class="btn btn-success btn-lg mb-2">Select</button>
+                    <button type="submit" class="btn btn-primary">Select</button>
                 </div>
             {% endfor %}
            

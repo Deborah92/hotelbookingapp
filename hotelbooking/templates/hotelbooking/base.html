@@ -12,7 +12,7 @@
         {% block content %}
         {% endblock %}
         {% if user.is_authenticated %} 
-            <a href="/logout" >logout</a>
+            <button type="button" class="btn btn-danger" onclick="location.href='/logout'">Logout</button>
         {% endif %}
     </body>
 </html>

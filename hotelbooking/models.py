@@ -56,3 +56,9 @@ class Booking(models.Model):
     def __str__(self):
         return self.locator
 
+    def formatCheckinDate(self):
+        return self.checkin_date.strftime('%m/%d/%Y')
+    
+    def formatCheckinOut(self):
+        return self.checkin_date.strftime('%m/%d/%Y')
+

@@ -2,11 +2,33 @@
 
 {% block content %}
     <h1>Bookings</h1>
-    {% for booking in bookings %}
-        <div class="booking">
-            <h2><a href="">{{ booking.locator }}</a></h2>
-            <p></p>
-        </div>
-    {% endfor %}
-    <a href="{% url 'new_booking' %}">New Booking</a>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Check In</th>
+                    <th scope="col">Check Out</th>
+                    <th scope="col">Room Type</th>
+                    <th scope="col">Num Guests</th>
+                    <th scope="col">Total Price</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Locator</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                    <tr>
+                        <th scope="row">{{ booking.formatCheckinDate }}</th>
+                        <td>{{ booking.formatCheckinOut }}</td>
+                        <td>{{ booking.room_type.name }}</td>
+                        <td>{{ booking.num_guest }}</td>
+                        <td>{{ booking.total_price }}</td>
+                        <td>{{ booking.customer.name }}</td>
+                        <td>{{ booking.locator }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <button type="button" class="btn btn-primary" onclick="location.href='{% url 'new_booking' %}'">New Booking</button>
 {% endblock %}
