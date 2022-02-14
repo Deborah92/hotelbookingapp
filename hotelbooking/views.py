@@ -1,4 +1,3 @@
-from contextlib import nullcontext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
@@ -123,7 +122,7 @@ def save_booking(request):
             error='Error saving booking: %s' % e.msg
     
     else:
-        booking_instance = nullcontext
+        booking_instance = {}
         error='Booking error: Any room available'
     
     base_url = reverse('booking_list')
