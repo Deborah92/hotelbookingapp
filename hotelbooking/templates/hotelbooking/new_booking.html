@@ -36,11 +36,10 @@
                         
                         <button type="submit" class="btn btn-primary">Select</a>
                     </div> 
-                    <input type="hidden" name="room_type" value={{room_type.id}}>
-                    <input type="hidden" name="in_date" value={{in_date}} min="2022-01-01" max="2022-12-31">
-                    <input type="hidden" name="out_date" value={{out_date}} min="2022-01-01" max="2022-12-31">
-                    <input type="hidden" name="num_guests" min="0" max="4" value={{num_guests}}>
-                    <input type="hidden" name="total" min="0" max="4" value={{room_type.total}}>
+                    <input type="hidden" name="room_type" value={{room_type.id}} required >
+                    <input type="hidden" name="in_out_range" value={{in_out_range}} class="form-control" required />
+                    <input type="hidden" name="num_guests" min="1" max="4" value={{num_guests}} required >
+                    <input type="hidden" name="total" value={{room_type.total}} >
                 {% endfor %}
                 {% if not room_types_available %}
                     No hay habitaciones disponibles
