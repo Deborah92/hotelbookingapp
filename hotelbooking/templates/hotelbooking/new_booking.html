@@ -10,21 +10,15 @@
             <form action="{% url 'get_room_types_available' %}" method="get">
                 <div id="search-bar" >
                     <div class="form-group row mr-2 fit-content">
-                        <label class="col-sm-4 col-form-label label-search">In date:</label>
+                        <label class="col-sm-4 col-form-label label-search">In - Out:</label>
                         <div class="col-sm-8">
-                            <input type="date" class="form-control" name="in_date" value={{in_date}} min="2022-01-01" max="2022-12-31" required>
-                        </div>
-                    </div>
-                    <div class="form-group row mr-2 fit-content">
-                        <label class="col-sm-4 col-form-label label-search">Out date:</label>
-                        <div class="col-sm-8">
-                            <input type="date" class="form-control" name="out_date" value={{out_date}} min="2022-01-01" max="2022-12-31" required>
+                            <input type="text" name="in_out_range" value={{in_out_range}} class="form-control" required />
                         </div>
                     </div>
                     <div class="form-group row mr-2 fit-content">
                         <label class="col-sm-7 col-form-label label-search">Num guests:</label>
                         <div class="col-sm-5">
-                        <input type="number" class="form-control" name="num_guests" min="0" max="4" value={{num_guests}} required>
+                            <input type="number" class="form-control" name="num_guests" min="1" max="4" value={{num_guests}} required />
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary fit-content align-items-center">Search</button>
@@ -54,4 +48,24 @@
             </form>
         </div>
     </div>
+
+    
+    <script type="text/javascript">
+         
+        $(function() {
+            $('input[name="in_out_range"]').daterangepicker({
+                opens: 'left',
+                startDate: moment("{{in_date}}" || moment(), 'YYYY-MM-DD'),
+                endDate: moment("{{out_date}}" || moment().startOf('hour').add(24, 'hour'), 'YYYY-MM-DD'),
+                minDate: moment(),
+                maxDate: moment().endOf('year'),
+                locale: {
+                    format: 'YYYY-MM-DD'
+                }
+            }, function(start, end, label) {
+                console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+            });
+        });
+    </script>
 {% endblock %}
+
