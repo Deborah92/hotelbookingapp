@@ -1,0 +1,3 @@
+#: .\templates\hotelbooking\new_booking.html:5
+msgid "WelcomeHeading"
+msgstr "Welcome Heading"

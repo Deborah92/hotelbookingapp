@@ -9,6 +9,7 @@ import random
 import string 
 from urllib.parse import urlencode
 from hashlib import blake2b
+from django.contrib import messages
 
 def generate_hash(text):
     hash = blake2b(digest_size=10)
@@ -69,7 +70,7 @@ def get_room_types_available(request):
             {'room_types_available' : room_types_available, 'in_out_range': in_date + ' - ' + out_date, 'in_date': in_date, 'out_date': out_date, 'num_guests': num_guests }
         )
     except Exception as e:
-        pass
+        messages.info(request, str(e))
         return render(
             request,
             'hotelbooking/new_booking.html', 
