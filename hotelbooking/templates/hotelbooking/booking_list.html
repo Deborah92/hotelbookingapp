@@ -1,36 +1,40 @@
-{% extends 'hotelbooking/base.html' %}
+{% extends 'app/base.html' %}
 
 {% block content %}
-    <div class="title-div">
-        <h3 class="w70" >Bookings</h3>
-        <button type="button" class="btn btn-primary justify-content-end" onclick="location.href='{% url 'new_booking' %}'">New Booking</button>
-    </div>
-    <div class="table-responsive margin2">
-        <table class="table table-striped" >
-            <thead>
-                <tr  class="table-header">
-                    <th scope="col">Check In</th>
-                    <th scope="col">Check Out</th>
-                    <th scope="col">Room Type</th>
-                    <th scope="col">Num Guests</th>
-                    <th scope="col">Total Price</th>
-                    <th scope="col">Customer</th>
-                    <th scope="col">Locator</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for booking in bookings %}
+    <div class="w-100 p-2">
+        <div id="title-div">
+            <h3 class="mw-50 m-0" >Bookings</h3>
+            <button type="button" class="btn btn-primary" onclick="location.href='{% url 'new_booking' %}'">New Booking</button>
+        </div>
+        <div class="table-responsive m-4">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>{{ booking.formatCheckinDate }}</th>
-                        <td>{{ booking.formatCheckinOut }}</td>
-                        <td>{{ booking.room_type.name }}</td>
-                        <td>{{ booking.num_guest }}</td>
-                        <td>{{ booking.total_price }}</td>
-                        <td>{{ booking.customer.name }}</td>
-                        <td>{{ booking.locator }}</td>
+                        <th scope="col">Check In</th>
+                        <th scope="col">Check Out</th>
+                        <th scope="col">Room Type</th>
+                        <th scope="col">Num Guests</th>
+                        <th scope="col">Total Price</th>
+                        <th scope="col">Customer</th>
+                        <th scope="col">Locator</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for booking in bookings %}
+                        <tr>
+                            <td>{{ booking.formatCheckinDate }}</th>
+                            <td>{{ booking.formatCheckinOut }}</td>
+                            <td>{{ booking.room_type.name }}</td>
+                            <td>{{ booking.num_guest }}</td>
+                            <td>{{ booking.total_price }}</td>
+                            <td>{{ booking.customer.name }}</td>
+                            <td>{{ booking.locator }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
+
+
 {% endblock %}

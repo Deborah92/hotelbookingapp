@@ -47,9 +47,6 @@ def new_booking(request):
         {'in_date': now.strftime("%d-%m-%Y"), 'out_date': str( datetime.now().date() + timedelta(days=1)), 'num_guests': 1}
     )
 
-def error_404_view(request):
-    return redirect('/')
-
 def dif_between_dates(start_date, end_date):
     dif_in_out_date = datetime.strptime(end_date, '%Y-%m-%d') - datetime.strptime(start_date, '%Y-%m-%d')
     return dif_in_out_date
@@ -67,10 +64,10 @@ def get_room_types_available(request):
         return render(
             request,
             'hotelbooking/new_booking.html', 
-            {'room_types_available' : room_types_available, 'in_out_range': in_date + ' - ' + out_date, 'in_date': in_date, 'out_date': out_date, 'num_guests': num_guests }
+            {'room_types_available' : room_types_available, 'in_out_range': in_date + " - " + out_date, 'in_date': in_date, 'out_date': out_date, 'num_guests': num_guests }
         )
     except Exception as e:
-        messages.info(request, str(e))
+        messages.error(request, str(e))
         return render(
             request,
             'hotelbooking/new_booking.html', 
@@ -80,8 +77,16 @@ def get_room_types_available(request):
     
 
 def booking_contact_data(request):
-    in_date = request.GET['in_date']
-    out_date = request.GET['out_date']
+    try:
+        in_out_range = request.GET['in_out_range'].split(" - ")
+        in_date = in_out_range[0]
+        out_date = in_out_range[1]
+        datetime.strptime(in_date, '%Y-%m-%d') 
+        datetime.strptime(out_date, '%Y-%m-%d') 
+    except Exception as e:
+        messages.error(request, str("Invalid dates"))
+        return redirect(get_url_home())
+
     num_guests = request.GET['num_guests']
     room_type = request.GET['room_type']
     total = request.GET['total']
@@ -114,9 +119,14 @@ def save_booking(request):
 
     customer_instance = create_or_update_customer(name, email, country_code, phone)
 
-    room = Room.objects.filter( type=room_type, is_bookable=True).exclude(booking__checkin_date__lte=out_date, booking__checkout_date__gt=in_date).first()
+    try:
+        room_type_instance = RoomType.objects.filter(id=room_type, max_guest__gte=num_guests).get()
+    except:
+        messages.error(request, 'Error with num of guests in this type of room')
+        return redirect(get_url_home())        
+
+    room = Room.objects.filter( type=room_type, is_bookable=True).exclude(booking__checkin_date__lte=out_date, booking__checkout_date__gt=in_date).order_by('num').first()
     if room:
-        room_type_instance = RoomType.objects.get(id=room_type)
         dif_in_out_date = dif_between_dates(in_date,out_date)
         total = dif_in_out_date.days * room_type_instance.price
         now=datetime.now().strftime("%c")
@@ -135,16 +145,16 @@ def save_booking(request):
         try:
             booking_instance.save()
         except Exception as e:     
-            error='Error saving booking: %s' % e.msg
+            messages.error(request, 'Error saving booking: %s' % e.msg)
+            return redirect(get_url_home())
     
     else:
         booking_instance = {}
-        error='Booking error: Any room available'
+        messages.error(request, 'Booking error: Any room available')
+        return redirect(get_url_home())
     
-    base_url = reverse('booking_list')
-    query_string = ''
-    if error:
-        query_string = urlencode({'error': error})
-    url = '{}?{}'.format(base_url, query_string) 
-    return redirect(url)
+    messages.success(request, 'Booking saved')
+    return redirect(get_url_home())
     
+def get_url_home():
+    return reverse('booking_list')

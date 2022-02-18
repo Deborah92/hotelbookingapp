@@ -1,4 +1,4 @@
-{% extends 'hotelbooking/base.html' %}
+{% extends 'app/base.html' %}
 
 {% block content %}
     {% load i18n %}
@@ -15,7 +15,7 @@
                     <div class="form-group row mr-2 fit-content">
                         <label class="col-sm-4 col-form-label label-search">In - Out:</label>
                         <div class="col-sm-8">
-                            <input type="text" name="in_out_range" value={{in_out_range}} class="form-control" required />
+                            <input type="text" name="in_out_range" class="form-control" required />
                         </div>
                     </div>
                     <div class="form-group row mr-2 fit-content">
@@ -28,26 +28,27 @@
                 </div>
             </form>
             
-            <form action="{% url 'booking_contact_data' %}" method="get">
+            
                 {% for room_type in room_types_available %}
-                    <div class= "card-booking">
-                        <div id="align-items-card" class="d-flex">
-                            <span>{{ room_type.name }}</span>
-                            <span id="occupancy-icon"><i class="fa-solid fa-user-large"></i>{{ room_type.max_guest }}</span>
-                            <span>{{ room_type.total }}€</span>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">Select</a>
-                    </div> 
-                    <input type="hidden" name="room_type" value={{room_type.id}} required >
-                    <input type="hidden" name="in_out_range" value={{in_out_range}} class="form-control" required />
-                    <input type="hidden" name="num_guests" min="1" max="4" value={{num_guests}} required >
-                    <input type="hidden" name="total" value={{room_type.total}} >
+                    <form action="{% url 'booking_contact_data' %}" method="get">
+                        <div class= "card-booking">
+                            <div id="align-items-card" class="d-flex">
+                                <span>{{ room_type.name }}</span>
+                                <span id="occupancy-icon"><i class="fa-solid fa-user-large"></i>{{ room_type.max_guest }}</span>
+                                <span>{{ room_type.total }}€</span>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Select</a>
+                        </div> 
+                        <input type="hidden" name="room_type" value={{room_type.id}} required >
+                        <input type="hidden" name="in_out_range" value={{in_out_range}} class="form-control" required />
+                        <input type="hidden" name="num_guests" min="1" max="4" value={{num_guests}} required >
+                        <input type="hidden" name="total" value={{room_type.total}} >
+                    </form>
                 {% endfor %}
                 {% if not room_types_available %}
                     No hay habitaciones disponibles
                 {% endif %}
-            </form>
         </div>
     </div>
 

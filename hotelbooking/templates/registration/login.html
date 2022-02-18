@@ -1,21 +1,18 @@
 
-{% extends 'hotelbooking/base.html' %}
+{% extends 'app/base.html' %}
 
 {% block content %}
-    <div id="login-form" class="w50">
-        <div class="h2 center-v">Login</div>
-        <form  action="{% url 'login' %}"  method="post">
-            {% csrf_token %}
-            <div class="form-group m-bottom-2">
-                <label for="user_login">User</label>
-                <input class="form-control" id="user_login" name="username" placeholder="User">
-            </div>
-            <div class="form-group m-bottom-2">
-                <label for="password_login">Password</label>
-                <input type="password" class="form-control" id="password_login" name="password" placeholder="Password">
-            </div>
-            <button type="submit" class="btn btn-primary center-h w100">Log in</button>
-        </form>
-    </div>
-
+    <form id= "login-form" class="col-10 col-md-6 col-xl-3" action="{% url 'login' %}" method="post">
+        <div class="d-flex align-items-center h2">Login</div>
+        {% csrf_token %}
+        <div class="form-group mt-3">
+          <label for="user_login">User</label>
+          <input class="form-control" id="user_login" name="username" placeholder="User">
+        </div>
+        <div class="form-group mt-3 mb-3">
+          <label for="password_login">Password</label>
+          <input type="password" id="password_login" class="form-control" name="password" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-primary col-12 mt-4">Log in</button>
+    </form>
 {% endblock %}
