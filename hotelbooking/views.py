@@ -55,6 +55,10 @@ def get_room_types_available(request):
         in_out_range = request.GET['in_out_range'].split(" - ")
         in_date = in_out_range[0]
         out_date = in_out_range[1]
+    except Exception as e:
+        messages.error(request, str("Invalid dates"))
+        return redirect(get_url_home())
+    try:
         num_guests = request.GET['num_guests']
         dif_in_out_date = dif_between_dates(in_date,out_date)
         room_types_available = RoomType.objects.filter(max_guest__gte=num_guests, room__is_bookable=True).exclude(
