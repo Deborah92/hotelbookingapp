@@ -1,6 +1,6 @@
 
 {% extends 'app/base.html' %}
-
+{% load i18n %}
 {% block content %}
     <form id= "login-form" class="col-10 col-md-6 col-xl-3" action="{% url 'login' %}" method="post">
         <div class="d-flex align-items-center h2">{% trans 'Login' %}</div>
