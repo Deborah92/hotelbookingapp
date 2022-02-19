@@ -20,8 +20,6 @@ def login_user(request):
     return render(request, 'registration/login.html', {})
 
 def authenticate_user(request):
-    username = request.POST['username']
-    password = request.POST['password']
     user = authenticate(request)
     if user is not None:
         login(request, user)
@@ -73,8 +71,6 @@ def get_room_types_available(request):
             'hotelbooking/new_booking.html', 
             {'num_guests': num_guests}
         )
-    
-    
 
 def booking_contact_data(request):
     try:
@@ -87,22 +83,30 @@ def booking_contact_data(request):
         messages.error(request, str("Invalid dates"))
         return redirect(get_url_home())
 
-    num_guests = request.GET['num_guests']
-    room_type = request.GET['room_type']
-    total = request.GET['total']
-    return render(
-        request,
-        'hotelbooking/booking_contact_data.html',
-        {'in_date': in_date, 'out_date': out_date, 'num_guests': num_guests, 'room_type': room_type, 'total': total}
-    )
+    try:
+        num_guests = request.GET['num_guests']
+        room_type = request.GET['room_type']
+        total = request.GET['total']
+        room_type_instance = RoomType.objects.filter(id=room_type, max_guest__gte=num_guests).get()
+
+        return render(
+            request,
+            'hotelbooking/booking_contact_data.html',
+            {'in_date': in_date, 'out_date': out_date, 'num_guests': num_guests, 'room_type': room_type, 'room_type_name': room_type_instance.name, 'total': total}
+        )
+    except Exception as e:
+        messages.error(request,  'Error: %s' % e.msg)
+        return redirect(get_url_home())
 
 def create_or_update_customer(name, email, country_code, phone):
     try:
         customer_instance = Customer.objects.get(email=email)
     except Customer.DoesNotExist:
-        customer_instance = Customer(name=name, email=email, country_code=country_code, phone=phone)
-        customer_instance.save()
-
+        try:
+            customer_instance = Customer(name=name, email=email, country_code=country_code, phone=phone)
+            customer_instance.save()
+        except  Exception as e:
+            raise Exception('Error saving customer: %s' % e.msg)
     return customer_instance
     
 
@@ -115,9 +119,12 @@ def save_booking(request):
     email = request.POST['email']
     country_code = request.POST['country_code']
     phone = request.POST['phone']
-    error=''
 
-    customer_instance = create_or_update_customer(name, email, country_code, phone)
+    try:
+        customer_instance = create_or_update_customer(name, email, country_code, phone)
+    except Exception as e:     
+        messages.error(request, e.msg)
+        return redirect(get_url_home())
 
     try:
         room_type_instance = RoomType.objects.filter(id=room_type, max_guest__gte=num_guests).get()
@@ -127,21 +134,7 @@ def save_booking(request):
 
     room = Room.objects.filter( type=room_type, is_bookable=True).exclude(booking__checkin_date__lte=out_date, booking__checkout_date__gt=in_date).order_by('num').first()
     if room:
-        dif_in_out_date = dif_between_dates(in_date,out_date)
-        total = dif_in_out_date.days * room_type_instance.price
-        now=datetime.now().strftime("%c")
-
-        booking_instance = Booking(
-            locator = generate_hash(now+str(num_guests)+str(room.num)),
-            room_type = room_type_instance,
-            num_guest = num_guests,
-            customer = customer_instance,
-            total_price = total,
-            room_num = room,
-            checkin_date = in_date,
-            checkout_date = out_date,
-            created_date = str(datetime.now()),
-        )
+        booking_instance = new_record_booking(num_guests, room, room_type_instance, customer_instance, in_date, out_date)
         try:
             booking_instance.save()
         except Exception as e:     
@@ -158,3 +151,22 @@ def save_booking(request):
     
 def get_url_home():
     return reverse('booking_list')
+
+def new_record_booking(num_guests, room, room_type_instance, customer_instance, in_date, out_date):
+    try:
+        dif_in_out_date = dif_between_dates(in_date,out_date)
+        total = dif_in_out_date.days * room_type_instance.price
+        now=datetime.now()
+        return Booking(
+            locator = generate_hash(now.strftime("%c")+str(num_guests)+str(room.num)),
+            room_type = room_type_instance,
+            num_guest = num_guests,
+            customer = customer_instance,
+            total_price = total,
+            room_num = room,
+            checkin_date = in_date,
+            checkout_date = out_date,
+            created_date = str(now),
+        )
+    except Exception as e:     
+        raise Exception('Error saving booking: %s' % e.msg)

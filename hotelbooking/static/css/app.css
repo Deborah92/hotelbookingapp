@@ -78,11 +78,6 @@ body{
     color: #fff;
 }
 
-#title-app {
-    font-size: x-large;
-    display: inline-flex;
-    align-items: center;
-}
 
 #search-bar {
     display: flex;
@@ -119,3 +114,17 @@ body{
 .label-search {
     margin-top: 0.5em;
 }
+.w-10{
+    width: 10% !important;
+}.w-20{
+    width: 20% !important;
+}.w-30{
+    width: 30% !important;
+}
+.w-40{
+    width: 40% !important;
+}
+.w-80{
+    width: 80% !important;
+}
+
