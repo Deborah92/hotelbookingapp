@@ -1,3 +1,146 @@
-#: .\templates\hotelbooking\new_booking.html:5
-msgid "WelcomeHeading"
-msgstr "Welcome Heading"
+#: .\templates\hotelbooking\booking_contact_data.html:6
+msgid "Booking Contact Data"
+msgstr ""
+
+#: .\templates\hotelbooking\booking_contact_data.html:11
+msgid "Your booking"
+msgstr ""
+
+#: .\templates\hotelbooking\booking_contact_data.html:14
+msgid "In date"
+msgstr ""
+
+#: .\templates\hotelbooking\booking_contact_data.html:18
+msgid "Out date"
+msgstr ""
+
+#: .\templates\hotelbooking\booking_contact_data.html:26
+msgid "Room type"
+msgstr ""
+
+#: .\templates\hotelbooking\booking_contact_data.html:30
+#: .\templates\hotelbooking\new_booking.html:15
+msgid "Guests"
+msgstr ""
+
+#: .\templates\hotelbooking\booking_contact_data.html:38
+msgid "Total"
+msgstr ""
+
+#: .\templates\hotelbooking\booking_contact_data.html:45
+msgid "Name"
+msgstr ""
+
+#: .\templates\hotelbooking\booking_contact_data.html:49
+msgid "Email"
+msgstr ""
+
+#: .\templates\hotelbooking\booking_contact_data.html:55
+msgid "Phone"
+msgstr ""
+
+#: .\templates\hotelbooking\booking_contact_data.html:63
+msgid "Save"
+msgstr ""
+
+#: .\templates\hotelbooking\booking_list.html:6
+msgid "Bookings"
+msgstr ""
+
+#: .\templates\hotelbooking\booking_list.html:7
+msgid "New Booking"
+msgstr ""
+
+#: .\templates\hotelbooking\booking_list.html:13
+msgid "Check In"
+msgstr ""
+
+#: .\templates\hotelbooking\booking_list.html:14
+msgid "Check Out"
+msgstr ""
+
+#: .\templates\hotelbooking\booking_list.html:15
+msgid "Room Type"
+msgstr ""
+
+#: .\templates\hotelbooking\booking_list.html:16
+msgid "Num Guests"
+msgstr ""
+
+#: .\templates\hotelbooking\booking_list.html:17
+msgid "Total Price"
+msgstr ""
+
+#: .\templates\hotelbooking\booking_list.html:18
+msgid "Customer"
+msgstr ""
+
+#: .\templates\hotelbooking\booking_list.html:19
+msgid "Locator"
+msgstr ""
+
+#: .\templates\hotelbooking\new_booking.html:7
+msgid "Create Booking"
+msgstr ""
+
+#: .\templates\hotelbooking\new_booking.html:11
+msgid "In / Out"
+msgstr ""
+
+#: .\templates\hotelbooking\new_booking.html:18
+msgid "Search"
+msgstr ""
+
+#: .\templates\hotelbooking\new_booking.html:28
+msgid "Select"
+msgstr ""
+
+#: .\templates\hotelbooking\new_booking.html:39
+msgid "There is not any room available"
+msgstr ""
+
+#: .\templates\registration\login.html:6
+msgid "Login"
+msgstr ""
+
+#: .\templates\registration\login.html:9
+msgid "User"
+msgstr ""
+
+#: .\templates\registration\login.html:13
+msgid "Password"
+msgstr ""
+
+#: .\templates\registration\login.html:16
+msgid "Log in"
+msgstr ""
+
+#: .\views.py:100
+#, python-format
+msgid "Error: %s"
+msgstr ""
+
+#: .\views.py:111
+#, python-format
+msgid "Error saving customer: %s"
+msgstr ""
+
+#: .\views.py:134
+msgid "Error with num of guests in this type of room"
+msgstr ""
+
+#: .\views.py:143 .\views.py:174
+#, python-format
+msgid "Error saving booking: %s"
+msgstr ""
+
+#: .\views.py:148
+msgid "Booking error: Any room available"
+msgstr ""
+
+#: .\views.py:151
+msgid "Booking saved"
+msgstr ""
+
+#~ msgid "WelcomeHeading"
+#~ msgstr "Welcome Heading"

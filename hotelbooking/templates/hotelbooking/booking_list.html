@@ -1,22 +1,22 @@
 {% extends 'app/base.html' %}
-
+{% load i18n %}
 {% block content %}
     <div class="w-100 p-2">
         <div id="title-div">
-            <h3 class="mw-50 m-0" >Bookings</h3>
-            <button type="button" class="btn btn-primary" onclick="location.href='{% url 'new_booking' %}'">New Booking</button>
+            <h3 class="mw-50 m-0" >{% trans 'Bookings' %}</h3>
+            <button type="button" class="btn btn-primary" onclick="location.href='{% url 'new_booking' %}'">{% trans 'New Booking' %}</button>
         </div>
         <div class="table-responsive m-4">
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Check In</th>
-                        <th scope="col">Check Out</th>
-                        <th scope="col">Room Type</th>
-                        <th scope="col">Num Guests</th>
-                        <th scope="col">Total Price</th>
-                        <th scope="col">Customer</th>
-                        <th scope="col">Locator</th>
+                        <th scope="col">{% trans 'Check In' %}</th>
+                        <th scope="col">{% trans 'Check Out' %}</th>
+                        <th scope="col">{% trans 'Room Type' %}</th>
+                        <th scope="col">{% trans 'Num Guests' %}</th>
+                        <th scope="col">{% trans 'Total Price' %}</th>
+                        <th scope="col">{% trans 'Customer' %}</th>
+                        <th scope="col">{% trans 'Locator' %}</th>
                     </tr>
                 </thead>
                 <tbody>

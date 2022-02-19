@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-17 21:25+0000\n"
+"POT-Creation-Date: 2022-02-19 21:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,150 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\templates\hotelbooking\new_booking.html:5
-msgid "WelcomeHeading"
-msgstr "Bienvenido"
+#: .\templates\hotelbooking\booking_contact_data.html:6
+msgid "Booking Contact Data"
+msgstr "Datos de contacto"
+
+#: .\templates\hotelbooking\booking_contact_data.html:11
+msgid "Your booking"
+msgstr "Su reserva"
+
+#: .\templates\hotelbooking\booking_contact_data.html:14
+msgid "In date"
+msgstr "Entrada"
+
+#: .\templates\hotelbooking\booking_contact_data.html:18
+msgid "Out date"
+msgstr "Salida"
+
+#: .\templates\hotelbooking\booking_contact_data.html:26
+msgid "Room type"
+msgstr "Tipo de habitación"
+
+#: .\templates\hotelbooking\booking_contact_data.html:30
+#: .\templates\hotelbooking\new_booking.html:15
+msgid "Guests"
+msgstr "Huéspedes"
+
+#: .\templates\hotelbooking\booking_contact_data.html:38
+msgid "Total"
+msgstr "Total"
+
+#: .\templates\hotelbooking\booking_contact_data.html:45
+msgid "Name"
+msgstr "Nombre"
+
+#: .\templates\hotelbooking\booking_contact_data.html:49
+msgid "Email:"
+msgstr "Email:"
+
+#: .\templates\hotelbooking\booking_contact_data.html:55
+msgid "Phone"
+msgstr "Teléfono"
+
+#: .\templates\hotelbooking\booking_contact_data.html:63
+msgid "Save"
+msgstr "Guardar"
+
+#: .\templates\hotelbooking\booking_list.html:6
+msgid "Bookings"
+msgstr "Reservas"
+
+#: .\templates\hotelbooking\booking_list.html:7
+msgid "New Booking"
+msgstr "Nueva Reserva"
+
+#: .\templates\hotelbooking\booking_list.html:13
+msgid "Check In"
+msgstr "Entrada"
+
+#: .\templates\hotelbooking\booking_list.html:14
+msgid "Check Out"
+msgstr "Salida"
+
+#: .\templates\hotelbooking\booking_list.html:15
+msgid "Room Type"
+msgstr "Tipo de habitación"
+
+#: .\templates\hotelbooking\booking_list.html:16
+msgid "Num Guests"
+msgstr "Huéspedes"
+
+#: .\templates\hotelbooking\booking_list.html:17
+msgid "Total Price"
+msgstr "Precio total"
+
+#: .\templates\hotelbooking\booking_list.html:18
+msgid "Customer"
+msgstr "Cliente"
+
+#: .\templates\hotelbooking\booking_list.html:19
+msgid "Locator"
+msgstr "Localizador"
+
+#: .\templates\hotelbooking\new_booking.html:7
+msgid "Create Booking"
+msgstr "Crear Reserva"
+
+#: .\templates\hotelbooking\new_booking.html:11
+msgid "In / Out"
+msgstr "Entrada / Salida"
+
+#: .\templates\hotelbooking\new_booking.html:18
+msgid "Search"
+msgstr "Buscar"
+
+#: .\templates\hotelbooking\new_booking.html:28
+msgid "Select"
+msgstr "Seleccionar"
+
+#: .\templates\hotelbooking\new_booking.html:39
+msgid "There is not any room available"
+msgstr "No hay habitaciones disponibles"
+
+#: .\templates\registration\login.html:6
+msgid "Login"
+msgstr "Login"
+
+#: .\templates\registration\login.html:9
+msgid "User"
+msgstr "Usuario"
+
+#: .\templates\registration\login.html:13
+msgid "Password"
+msgstr "Contraseña"
+
+#: .\templates\registration\login.html:16
+msgid "Log in"
+msgstr "Log in"
+
+#: .\views.py:100
+#, python-format
+msgid "Error: %s"
+msgstr ""
+
+#: .\views.py:111
+#, python-format
+msgid "Error saving customer: %s"
+msgstr "Error al guardar cliente: %s"
+
+#: .\views.py:134
+msgid "Error with num of guests in this type of room"
+msgstr "Error de nº de Huéspedes para este tipo de habitación"
+
+#: .\views.py:143 .\views.py:174
+#, python-format
+msgid "Error saving booking: %s"
+msgstr "Error guardando reserva: %s"
+
+#: .\views.py:148
+#, fuzzy
+#| msgid "There is not any room available"
+msgid "Booking error: Any room available"
+msgstr "No hay habitaciones disponibles"
+
+#: .\views.py:151
+#, fuzzy
+#| msgid "Bookings"
+msgid "Booking saved"
+msgstr "Reserva guardada"

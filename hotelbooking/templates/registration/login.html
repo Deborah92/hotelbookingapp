@@ -3,16 +3,16 @@
 
 {% block content %}
     <form id= "login-form" class="col-10 col-md-6 col-xl-3" action="{% url 'login' %}" method="post">
-        <div class="d-flex align-items-center h2">Login</div>
+        <div class="d-flex align-items-center h2">{% trans 'Login' %}</div>
         {% csrf_token %}
         <div class="form-group mt-3">
-          <label for="user_login">User</label>
-          <input class="form-control" id="user_login" name="username" placeholder="User">
+          <label for="user_login">{% trans 'User' %}</label>
+          <input class="form-control" id="user_login" name="username" placeholder="User" required>
         </div>
         <div class="form-group mt-3 mb-3">
-          <label for="password_login">Password</label>
-          <input type="password" id="password_login" class="form-control" name="password" placeholder="Password">
+          <label for="password_login">{% trans 'Password' %}</label>
+          <input type="password" id="password_login" class="form-control" name="password" placeholder="Password" required>
         </div>
-        <button type="submit" class="btn btn-primary col-12 mt-4">Log in</button>
+        <button type="submit" class="btn btn-primary col-12 mt-4">{% trans 'Log in' %}</button>
     </form>
 {% endblock %}

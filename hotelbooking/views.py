@@ -5,11 +5,9 @@ from django.urls import reverse
 from django.db.models import F
 from .models import Booking, RoomType, Room, Customer
 from datetime import datetime, timedelta
-import random
-import string 
-from urllib.parse import urlencode
 from hashlib import blake2b
 from django.contrib import messages
+from django.utils.translation import gettext as _
 
 def generate_hash(text):
     hash = blake2b(digest_size=10)
@@ -99,7 +97,7 @@ def booking_contact_data(request):
             {'in_date': in_date, 'out_date': out_date, 'num_guests': num_guests, 'room_type': room_type, 'room_type_name': room_type_instance.name, 'total': total}
         )
     except Exception as e:
-        messages.error(request,  'Error: %s' % e.msg)
+        messages.error(request, _('Error: %s') % e)
         return redirect(get_url_home())
 
 def create_or_update_customer(name, email, country_code, phone):
@@ -110,7 +108,7 @@ def create_or_update_customer(name, email, country_code, phone):
             customer_instance = Customer(name=name, email=email, country_code=country_code, phone=phone)
             customer_instance.save()
         except  Exception as e:
-            raise Exception('Error saving customer: %s' % e.msg)
+            raise Exception(_('Error saving customer: %s') % e.msg)
     return customer_instance
     
 
@@ -133,7 +131,7 @@ def save_booking(request):
     try:
         room_type_instance = RoomType.objects.filter(id=room_type, max_guest__gte=num_guests).get()
     except:
-        messages.error(request, 'Error with num of guests in this type of room')
+        messages.error(request, _('Error with num of guests in this type of room'))
         return redirect(get_url_home())        
 
     room = Room.objects.filter( type=room_type, is_bookable=True).exclude(booking__checkin_date__lte=out_date, booking__checkout_date__gt=in_date).order_by('num').first()
@@ -142,15 +140,15 @@ def save_booking(request):
         try:
             booking_instance.save()
         except Exception as e:     
-            messages.error(request, 'Error saving booking: %s' % e.msg)
+            messages.error(request, _('Error saving booking: %s') % e.msg)
             return redirect(get_url_home())
     
     else:
         booking_instance = {}
-        messages.error(request, 'Booking error: Any room available')
+        messages.error(request, _('Booking error: Any room available'))
         return redirect(get_url_home())
     
-    messages.success(request, 'Booking saved')
+    messages.success(request, _('Booking saved'))
     return redirect(get_url_home())
     
 def get_url_home():
@@ -173,4 +171,4 @@ def new_record_booking(num_guests, room, room_type_instance, customer_instance, 
             created_date = str(now),
         )
     except Exception as e:     
-        raise Exception('Error saving booking: %s' % e.msg)
+        raise Exception(_('Error saving booking: %s') % e.msg)
