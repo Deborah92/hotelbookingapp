@@ -124,28 +124,31 @@ msgid "Invalid dates"
 msgstr ""
 
 #: .\views.py:101
-#, python-format
 msgid "Error with data"
 msgstr "Error en los datos"
 
-#: .\views.py:112
+#: .\views.py:107
+msgid "Email not valid"
+msgstr ""
+
+#: .\views.py:115
 #, python-format
 msgid "Error saving customer: %s"
 msgstr ""
 
-#: .\views.py:135
+#: .\views.py:138
 msgid "Error with num of guests in this type of room"
 msgstr ""
 
-#: .\views.py:144 .\views.py:175
+#: .\views.py:147 .\views.py:178
 #, python-format
 msgid "Error saving booking: %s"
 msgstr ""
 
-#: .\views.py:149
+#: .\views.py:152
 msgid "Booking error: Any room available"
 msgstr ""
 
-#: .\views.py:152
+#: .\views.py:155
 msgid "Booking saved"
 msgstr ""

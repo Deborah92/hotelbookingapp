@@ -24,10 +24,6 @@ html, body{
     border: #337ab7 solid thin;
     border-radius: 8px;
 }
-.fit-content {
-    height: fit-content;
-    margin-top: 1.7em
-}
 #bookings-table tbody td{
     word-break: break-all;
 }

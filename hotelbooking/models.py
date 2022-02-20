@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
+from django.core.validators import RegexValidator
 
+EMAIL_REGEX = RegexValidator(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$', 'email not valid')
 class Hotel(models.Model):
     id = models.AutoField( primary_key = True )
     name = models.CharField( max_length = 100 )
@@ -23,7 +25,7 @@ class RoomType(models.Model):
 class Customer(models.Model):
     id = models.AutoField( primary_key = True )
     name = models.CharField( max_length = 60 )
-    email = models.CharField( max_length = 100 )
+    email = models.CharField( max_length = 100, validators=[EMAIL_REGEX] )
     phone = models.CharField( max_length = 9 )
     country_code = models.CharField( max_length = 3 )
     created_date = models.DateTimeField( default=timezone.now )

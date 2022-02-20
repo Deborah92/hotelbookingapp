@@ -6,10 +6,10 @@
         <div class="d-flex justify-content-start">
             <h3 class="mt-4" >{% trans 'Create Booking' %}</h3>
         </div>
-        <form id= "search-booking-bar" class= "row d-md-flex fit-content justify-content-between col-12 mt-4 mx-0" action="{% url 'get_room_types_available' %}" method="get">
+        <form id= "search-booking-bar" class= "row d-md-flex justify-content-between col-12 mt-4 mx-0" action="{% url 'get_room_types_available' %}" method="get">
             <div class="d-flex align-items-center justify-content-between col-12 col-md-6 mt-3 px-0">
                 <label class="d-flex col-3 ">{% trans 'In / Out' %} :</label>
-                <input type="text" class="form-control fit-content mt-0 text-center ms-2" name="in_out_range" value={{in_out_range}}  required />
+                <input type="text" class="form-control mt-0 text-center ms-2" name="in_out_range" value={{in_out_range}}  required />
             </div>
             <div class="d-flex align-items-center justify-content-between col-12 col-md-6 mt-3 px-0 ">
                 <div class=" d-flex justify-content-start col-5">

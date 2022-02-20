@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.urls import reverse, re_path
 from django.db.models import F, Count
 from .models import Booking, RoomType, Room, Customer
 from datetime import datetime, timedelta
@@ -109,7 +109,7 @@ def create_or_update_customer(name, email, country_code, phone):
             customer_instance = Customer(name=name, email=email, country_code=country_code, phone=phone)
             customer_instance.save()
         except  Exception as e:
-            raise Exception(_('Error saving customer: %s') % e.msg)
+            raise Exception(_('Error saving customer: %s') % e)
     return customer_instance
     
 
@@ -126,7 +126,7 @@ def save_booking(request):
     try:
         customer_instance = create_or_update_customer(name, email, country_code, phone)
     except Exception as e:     
-        messages.error(request, e.msg)
+        messages.error(request, e)
         return redirect(get_url_home())
 
     try:
@@ -141,7 +141,7 @@ def save_booking(request):
         try:
             booking_instance.save()
         except Exception as e:     
-            messages.error(request, _('Error saving booking: %s') % e.msg)
+            messages.error(request, _('Error saving booking: %s') % e)
             return redirect(get_url_home())
     
     else:
@@ -172,4 +172,4 @@ def new_record_booking(num_guests, room, room_type_instance, customer_instance, 
             created_date = str(now),
         )
     except Exception as e:     
-        raise Exception(_('Error saving booking: %s') % e.msg)
+        raise Exception(_('Error saving booking: %s') % e)
