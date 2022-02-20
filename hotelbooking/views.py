@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.db.models import F
+from django.db.models import F, Count
 from .models import Booking, RoomType, Room, Customer
 from datetime import datetime, timedelta
 from hashlib import blake2b
@@ -59,12 +59,13 @@ def get_room_types_available(request):
     try:
         num_guests = request.GET['num_guests']
         dif_in_out_date = dif_between_dates(in_date,out_date)
-        room_types_available = RoomType.objects.filter(max_guest__gte=num_guests, room__is_bookable=True).exclude(
-        booking__checkin_date__lte=out_date, booking__checkout_date__gt=in_date).order_by('id').annotate(total=F('price') * dif_in_out_date.days)
+        room_types_available = Room.objects.filter(type__max_guest__gte=num_guests, is_bookable=True).values('type__id').exclude(
+            booking__checkin_date__lte=out_date, booking__checkout_date__gt=in_date).order_by('type__id').annotate(
+                total=F('type__price') * dif_in_out_date.days,n_rooms=Count('num'), type_id=F('type__id'), type_name=F('type__name'), max_guests=F('type__max_guest'))
         return render(
             request,
             'hotelbooking/new_booking.html', 
-            {'room_types_available' : room_types_available, 'in_out_range': in_date + " - " + out_date, 'in_date': in_date, 'out_date': out_date, 'num_guests': num_guests }
+            {'room_types_available' : room_types_available, 'in_out_range': in_date + " - " + out_date, 'in_date': in_date, 'out_date': out_date, 'num_guests': num_guests}
         )
     except Exception as e:
         messages.error(request, str(e))

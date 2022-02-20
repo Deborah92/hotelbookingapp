@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-19 21:45+0000\n"
+"POT-Creation-Date: 2022-02-20 01:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,10 +36,10 @@ msgstr "Salida"
 
 #: .\templates\hotelbooking\booking_contact_data.html:26
 msgid "Room type"
-msgstr "Tipo de habitación"
+msgstr "Habitación"
 
 #: .\templates\hotelbooking\booking_contact_data.html:30
-#: .\templates\hotelbooking\new_booking.html:15
+#: .\templates\hotelbooking\new_booking.html:16
 msgid "Guests"
 msgstr "Huéspedes"
 
@@ -81,7 +81,7 @@ msgstr "Salida"
 
 #: .\templates\hotelbooking\booking_list.html:15
 msgid "Room Type"
-msgstr "Tipo de habitación"
+msgstr "Habitación"
 
 #: .\templates\hotelbooking\booking_list.html:16
 msgid "Num Guests"
@@ -107,15 +107,19 @@ msgstr "Crear Reserva"
 msgid "In / Out"
 msgstr "Entrada / Salida"
 
-#: .\templates\hotelbooking\new_booking.html:18
+#: .\templates\hotelbooking\new_booking.html:19
 msgid "Search"
 msgstr "Buscar"
 
 #: .\templates\hotelbooking\new_booking.html:28
+msgid "Availables"
+msgstr "Disponibles"
+
+#: .\templates\hotelbooking\new_booking.html:31
 msgid "Select"
 msgstr "Seleccionar"
 
-#: .\templates\hotelbooking\new_booking.html:39
+#: .\templates\hotelbooking\new_booking.html:42
 msgid "There is not any room available"
 msgstr "No hay habitaciones disponibles"
 
@@ -135,32 +139,32 @@ msgstr "Contraseña"
 msgid "Log in"
 msgstr "Log in"
 
-#: .\views.py:100
+#: .\views.py:101
 #, python-format
 msgid "Error: %s"
 msgstr ""
 
-#: .\views.py:111
+#: .\views.py:112
 #, python-format
 msgid "Error saving customer: %s"
 msgstr "Error al guardar cliente: %s"
 
-#: .\views.py:134
+#: .\views.py:135
 msgid "Error with num of guests in this type of room"
 msgstr "Error de nº de Huéspedes para este tipo de habitación"
 
-#: .\views.py:143 .\views.py:174
+#: .\views.py:144 .\views.py:175
 #, python-format
 msgid "Error saving booking: %s"
 msgstr "Error guardando reserva: %s"
 
-#: .\views.py:148
+#: .\views.py:149
 #, fuzzy
 #| msgid "There is not any room available"
 msgid "Booking error: Any room available"
 msgstr "No hay habitaciones disponibles"
 
-#: .\views.py:151
+#: .\views.py:152
 #, fuzzy
 #| msgid "Bookings"
 msgid "Booking saved"

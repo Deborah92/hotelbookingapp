@@ -19,7 +19,7 @@ msgid "Room type"
 msgstr ""
 
 #: .\templates\hotelbooking\booking_contact_data.html:30
-#: .\templates\hotelbooking\new_booking.html:15
+#: .\templates\hotelbooking\new_booking.html:16
 msgid "Guests"
 msgstr ""
 
@@ -32,7 +32,7 @@ msgid "Name"
 msgstr ""
 
 #: .\templates\hotelbooking\booking_contact_data.html:49
-msgid "Email"
+msgid "Email:"
 msgstr ""
 
 #: .\templates\hotelbooking\booking_contact_data.html:55
@@ -87,15 +87,19 @@ msgstr ""
 msgid "In / Out"
 msgstr ""
 
-#: .\templates\hotelbooking\new_booking.html:18
+#: .\templates\hotelbooking\new_booking.html:19
 msgid "Search"
 msgstr ""
 
 #: .\templates\hotelbooking\new_booking.html:28
+msgid "Availables"
+msgstr ""
+
+#: .\templates\hotelbooking\new_booking.html:31
 msgid "Select"
 msgstr ""
 
-#: .\templates\hotelbooking\new_booking.html:39
+#: .\templates\hotelbooking\new_booking.html:42
 msgid "There is not any room available"
 msgstr ""
 
@@ -115,32 +119,29 @@ msgstr ""
 msgid "Log in"
 msgstr ""
 
-#: .\views.py:100
+#: .\views.py:101
 #, python-format
 msgid "Error: %s"
 msgstr ""
 
-#: .\views.py:111
+#: .\views.py:112
 #, python-format
 msgid "Error saving customer: %s"
 msgstr ""
 
-#: .\views.py:134
+#: .\views.py:135
 msgid "Error with num of guests in this type of room"
 msgstr ""
 
-#: .\views.py:143 .\views.py:174
+#: .\views.py:144 .\views.py:175
 #, python-format
 msgid "Error saving booking: %s"
 msgstr ""
 
-#: .\views.py:148
+#: .\views.py:149
 msgid "Booking error: Any room available"
 msgstr ""
 
-#: .\views.py:151
+#: .\views.py:152
 msgid "Booking saved"
 msgstr ""
-
-#~ msgid "WelcomeHeading"
-#~ msgstr "Welcome Heading"

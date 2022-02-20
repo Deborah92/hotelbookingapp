@@ -6,38 +6,43 @@
         <div class="d-flex justify-content-start">
             <h3 class="mt-4" >{% trans 'Create Booking' %}</h3>
         </div>
-        <form class= "row d-md-flex fit-content justify-content-center mt-4" action="{% url 'get_room_types_available' %}" method="get">
-            <div class="d-flex align-items-center justify-content-center col-12 col-md-3 mt-3 ps-0">
-                <label class="d-flex text-start mt-0 ms-2">{% trans 'In / Out' %} :</label>
+        <form id= "search-booking-bar" class= "row d-md-flex fit-content justify-content-between col-12 mt-4 mx-0" action="{% url 'get_room_types_available' %}" method="get">
+            <div class="d-flex align-items-center justify-content-between col-12 col-md-6 mt-3 px-0">
+                <label class="d-flex col-3 ">{% trans 'In / Out' %} :</label>
                 <input type="text" class="form-control fit-content mt-0 text-center ms-2" name="in_out_range" value={{in_out_range}}  required />
             </div>
-            <div class="d-flex align-items-center justify-content-start justify-content-md-center col-12 col-md-2 mt-3 ps-0 ">
-                <label class="d-flex text-start mt-0 ms-2">{% trans 'Guests' %} :</label>
-                <input type="number" class="form-control fit-content mt-0 text-center ms-2" name="num_guests" min="1" max="4" value={{num_guests}} required />
+            <div class="d-flex align-items-center justify-content-between col-12 col-md-6 mt-3 px-0 ">
+                <div class=" d-flex justify-content-start col-5">
+                    <label class="d-flex align-items-center justify-content-start justify-content-md-end col-8">{% trans 'Guests' %} :</label>
+                    <input type="number" class="form-control mt-0 ms-md-3" name="num_guests" min="1" max="4" value={{num_guests}} required />
+                </div>
+                <button type="submit" class="col-md-2 btn btn-primary">{% trans 'Search' %} </button>
             </div>
-            <button type="submit" class="col-md-2 btn btn-primary mt-4">{% trans 'Search' %} </button>
         </form>
         
         {% for room_type in room_types_available %}
-            <form class="d-flex justify-content-center" action="{% url 'booking_contact_data' %}" method="get">
-                <div class="card col-10 col-md-8">
-                    <div class="card-body d-flex justify-content-between align-items-center">
-                        <span class="h5 col">{{ room_type.name }}</span>
-                        <span class="col d-flex justify-content-center"><i class="fa-solid fa-user-large" ></i>{{ room_type.max_guest }}</span>
-                        <span class="col text-center">{{ room_type.total }}€</span>
-                        <button type="submit" class="btn btn-primary">{% trans 'Select' %}</a>
+            <form class="d-flex justify-content-center mt-4" action="{% url 'booking_contact_data' %}" method="get">
+                <div class="card col-12 ">
+                    <div class="card-body d-md-flex justify-content-between align-items-center col-12">
+                        <label class="h5 col-12 col-md-3">{{ room_type.type_name }}</label>
+                        <div class="col-12 col-md-6 d-flex justify-content-between">
+                            <label class="col-5">{% trans 'Availables' %}: {{ room_type.n_rooms }}</label>
+                            <label class="col-2 d-flex justify-content-center"><i class="fa-solid fa-user-large" ></i>{{ room_type.max_guests }}</label>
+                            <label class=" d-flex justify-content-center">{{ room_type.total }}€</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-2 col-12 col-md-2">{% trans 'Select' %}</a>
                     </div>
                     
                 </div>
-                <input type="hidden" name="room_type" value={{room_type.id}} required >
+                <input type="hidden" name="room_type" value={{room_type.type_id}} required >
                 <input type="hidden" name="in_out_range" value={{in_out_range}} class="form-control" required />
                 <input type="hidden" name="num_guests" min="1" max="4" value={{num_guests}} required >
                 <input type="hidden" name="total" value={{room_type.total}} >
             </form>
-            {% endfor %}
+        {% endfor %}
             {% if not room_types_available %}
-            {% trans 'There is not any room available' %}
-        {% endif %}
+                <label class="col-12 d-flex justify-content-center mt-4 h5">{% trans 'There is not any room available' %}</label>
+            {% endif %}
     </div>
 
 
