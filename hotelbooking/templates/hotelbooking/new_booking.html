@@ -40,7 +40,7 @@
                 <input type="hidden" name="total" value={{room_type.total}} >
             </form>
         {% endfor %}
-            {% if not room_types_available %}
+            {% if not room_types_available and not first_load %}
                 <label class="col-12 d-flex justify-content-center mt-4 h5">{% trans 'There is not any room available' %}</label>
             {% endif %}
     </div>

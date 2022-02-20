@@ -40,7 +40,7 @@ def new_booking(request):
     return render(
         request,
         'hotelbooking/new_booking.html',
-        {'in_date': now.strftime("%d-%m-%Y"), 'out_date': str( datetime.now().date() + timedelta(days=1)), 'num_guests': 1}
+        {'in_date': now.strftime("%d-%m-%Y"), 'out_date': str( datetime.now().date() + timedelta(days=1)), 'num_guests': 1, 'first_load': True}
     )
 
 def dif_between_dates(start_date, end_date):
