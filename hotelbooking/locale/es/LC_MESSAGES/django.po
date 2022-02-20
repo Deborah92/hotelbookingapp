@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-20 01:38+0000\n"
+"POT-Creation-Date: 2022-02-20 10:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -111,15 +111,15 @@ msgstr "Entrada / Salida"
 msgid "Search"
 msgstr "Buscar"
 
-#: .\templates\hotelbooking\new_booking.html:28
+#: .\templates\hotelbooking\new_booking.html:29
 msgid "Availables"
 msgstr "Disponibles"
 
-#: .\templates\hotelbooking\new_booking.html:31
+#: .\templates\hotelbooking\new_booking.html:33
 msgid "Select"
 msgstr "Seleccionar"
 
-#: .\templates\hotelbooking\new_booking.html:42
+#: .\templates\hotelbooking\new_booking.html:44
 msgid "There is not any room available"
 msgstr "No hay habitaciones disponibles"
 
@@ -139,9 +139,15 @@ msgstr "Contraseña"
 msgid "Log in"
 msgstr "Log in"
 
+#: .\views.py:86
+#, fuzzy
+#| msgid "In date"
+msgid "Invalid dates"
+msgstr "Fechas no válidas"
+
 #: .\views.py:101
 #, python-format
-msgid "Error: %s"
+msgid "Error with data"
 msgstr ""
 
 #: .\views.py:112

@@ -91,15 +91,15 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: .\templates\hotelbooking\new_booking.html:28
+#: .\templates\hotelbooking\new_booking.html:29
 msgid "Availables"
 msgstr ""
 
-#: .\templates\hotelbooking\new_booking.html:31
+#: .\templates\hotelbooking\new_booking.html:33
 msgid "Select"
 msgstr ""
 
-#: .\templates\hotelbooking\new_booking.html:42
+#: .\templates\hotelbooking\new_booking.html:44
 msgid "There is not any room available"
 msgstr ""
 
@@ -119,10 +119,14 @@ msgstr ""
 msgid "Log in"
 msgstr ""
 
+#: .\views.py:86
+msgid "Invalid dates"
+msgstr ""
+
 #: .\views.py:101
 #, python-format
-msgid "Error: %s"
-msgstr ""
+msgid "Error with data"
+msgstr "Error en los datos"
 
 #: .\views.py:112
 #, python-format

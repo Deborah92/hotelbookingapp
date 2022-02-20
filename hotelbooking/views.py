@@ -83,7 +83,7 @@ def booking_contact_data(request):
         datetime.strptime(in_date, '%Y-%m-%d') 
         datetime.strptime(out_date, '%Y-%m-%d') 
     except Exception as e:
-        messages.error(request, str("Invalid dates"))
+        messages.error(request, _("Invalid dates"))
         return redirect(get_url_home())
 
     try:
@@ -98,7 +98,7 @@ def booking_contact_data(request):
             {'in_date': in_date, 'out_date': out_date, 'num_guests': num_guests, 'room_type': room_type, 'room_type_name': room_type_instance.name, 'total': total}
         )
     except Exception as e:
-        messages.error(request, _('Error: %s') % e)
+        messages.error(request, _('Error with data'))
         return redirect(get_url_home())
 
 def create_or_update_customer(name, email, country_code, phone):
